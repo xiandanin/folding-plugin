@@ -1,0 +1,89 @@
+<idea-plugin>
+  <id>com.dmytrodanylyk.fold</id>
+  <name>Android File Grouping</name>
+  <version>1.3</version>
+  <vendor email="dmytrodanylyk@gmail.com" url="http://www.dmytrodanylyk.com/">Dmytro Danylyk</vendor>
+
+  <description><![CDATA[
+      This plugin is very helpful in Android Development.<br>
+      It can display your files as a group of different folders only in project structure view.
+      <b>Note:</b> files will not be physically moved to folders.<br>
+      <br>
+      Before decompose.<br>
+      <pre>
+      res/
+        layout/
+          chat_activity.xml
+          chat_toolbar.xml
+          chat_item.xml
+          chat_share_view.xml
+          home_activity.xml
+          home_toolbar.xml
+          home_fragment_sign_in.xml
+          home_fragment_sign_up.xml
+      </pre>
+      <br>
+      After decompose.<br>
+      <pre>
+      res/
+        layout/
+          chat/
+            chat_activity.xml
+            chat_toolbar.xml
+            chat_item.xml
+            chat_share_view.xml
+          home/
+            home_activity.xml
+            home_toolbar.xml
+            home_fragment_sign_in.xml
+            home_fragment_sign_up.xml
+      </pre>
+      <br>
+      Naming rules: folder name -> file name part till underscore<br>
+      <br>
+      <b>Note</b> The Android project view defines its own structure and does not allow modifying the structure through any extensions.<br>
+    ]]></description>
+
+  <change-notes><![CDATA[
+      Initial release.
+    ]]>
+  </change-notes>
+
+  <!-- please see https://confluence.jetbrains.com/display/IDEADEV/Build+Number+Ranges for description -->
+  <idea-version since-build="131"/>
+
+  <!-- please see https://confluence.jetbrains.com/display/IDEADEV/Plugin+Compatibility+with+IntelliJ+Platform+Products
+       on how to target different products -->
+  <!-- uncomment to enable plugin in all products
+  <depends>com.intellij.modules.lang</depends>
+  -->
+
+  <extensions defaultExtensionNs="com.intellij">
+    <treeStructureProvider implementation="com.dd.ProjectStructureProvider"/>
+  </extensions>
+
+  <extensions defaultExtensionNs="com.intellij">
+    <!-- Add your extensions here -->
+  </extensions>
+
+  <application-components>
+    <!-- Add your application components here -->
+  </application-components>
+
+  <project-components>
+    <!-- Add your project components here -->
+  </project-components>
+
+  <extensions defaultExtensionNs="com.intellij">
+    <errorHandler implementation="com.intellij.diagnostic.ITNReporter"/>
+    <applicationConfigurable instance="com.dd.SettingConfigurable"/>
+  </extensions>
+
+  <actions>
+    <!-- Add your actions here -->
+    <action id="ComposeAction" class="com.dd.ComposeAction">
+      <add-to-group group-id="ProjectViewPopupMenu" anchor="first"/>
+    </action>
+  </actions>
+
+</idea-plugin>
